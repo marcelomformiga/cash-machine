@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  mysql:
+    image: "mysql:5.7"
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - mysql_db:/home/eduardo/databases/mysql/:rw
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cashmachine
+volumes:
+  mysql_db:
+  
