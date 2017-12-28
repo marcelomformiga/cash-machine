@@ -40,7 +40,7 @@ public class TokenUtils {
      */
     public String getUsernameFromToken(String token) {
         String username = null;
-        if (token != null) {
+        if (token != null && !token.equals("null")) {
             try {
                 final Claims claims = this.getClaimsFromToken(token);
                 username = claims.getSubject();

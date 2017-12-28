@@ -1,5 +1,7 @@
 package com.gsw.cashmachine.configurarion;
 
+import com.gsw.cashmachine.interceptor.IpHandshakeInterceptor;
+import com.gsw.cashmachine.interceptor.PresenceChannelInterceptor;
 import com.gsw.cashmachine.utils.Constants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

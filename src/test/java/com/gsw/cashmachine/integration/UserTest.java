@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gsw.cashmachine.authentication.request.AuthenticationRequest;
 import com.gsw.cashmachine.authentication.response.AuthenticationResponse;
 import com.gsw.cashmachine.config.AbstractApplicationTest;
+import com.gsw.cashmachine.domain.account.Account;
 import com.gsw.cashmachine.domain.user.User;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,7 +46,7 @@ public class UserTest extends AbstractApplicationTest {
     public void crudTest() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
 
-        User user = new User("thiago", "1234", "ROLE_ADMIN", "TESTE");
+        User user = new User("thiago", "1234", "thiago@hotmail.com", "ROLE_ADMIN", new Account());
         String jsonInString = mapper.writeValueAsString(user);
         int status = super.mockMvcPerformAuthenticatedPostStatus("/api/user", jsonInString, MediaType.APPLICATION_JSON_VALUE, status().isCreated(), token);
         Assert.assertEquals(201, status);

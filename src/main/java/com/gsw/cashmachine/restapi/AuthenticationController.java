@@ -6,7 +6,7 @@ import com.gsw.cashmachine.authentication.response.AuthenticationResponse;
 import com.gsw.cashmachine.authentication.security.TokenUtils;
 import com.gsw.cashmachine.authentication.service.UserSocketService;
 import com.gsw.cashmachine.authentication.user.AuthenticationUser;
-import com.gsw.cashmachine.configurarion.StompConnectEvent;
+import com.gsw.cashmachine.interceptor.StompConnectEvent;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

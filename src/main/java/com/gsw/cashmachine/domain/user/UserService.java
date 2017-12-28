@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -31,11 +32,12 @@ public class UserService {
      * @return User
      * @throws ExistUserException
      */
+    @Transactional
     public User save(final User user) throws ExistUserException {
         User userEntity = loadUserByUsername(user.getUsername());
         if (userEntity != null) throw new ExistUserException();
         else {
-            userEntity = new User(user.getUsername(), encoder.encode(user.getPassword()), user.getAuthorities(), user.getObservation());
+            userEntity = new User(user.getUsername(), encoder.encode(user.getPassword()),user.getEmail(), user.getAuthorities(), user.getAccount());
             userRepository.save(userEntity);
         }
         return userEntity;
@@ -53,7 +55,7 @@ public class UserService {
             user.setPassword(userEntity.getPassword());
             return userRepository.save(user);
         }else {
-            return userRepository.save(new User(user.getId(), user.getUsername(), encoder.encode(user.getPassword()), user.getAuthorities(), user.getObservation()));
+            return userRepository.save(new User(user.getId(), user.getUsername(), encoder.encode(user.getPassword()), user.getAuthorities(), user.getEmail(), user.getAccount()));
         }
     }
 
