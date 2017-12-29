@@ -11,7 +11,6 @@
           if (res.status === 200) {
             StorageHelper.setItem(KEY_STORAGE, res.data.token);
           }
-
           return res.data;
         });
     };

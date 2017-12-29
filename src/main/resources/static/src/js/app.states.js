@@ -20,10 +20,15 @@
           url: "",
           templateUrl: "views/home.html"
         })
-        .state('home.users', {
-          url: "/users",
-          templateUrl: "views/pages/users.html",
-          controller: "userCtrl"
+        .state('home.menu', {
+          url: "/menu",
+          templateUrl: "views/pages/menu.html",
+          controller: "menuCtrl"
+        })
+        .state('home.profile', {
+          url: "/profile",
+          templateUrl: "views/pages/profile.html",
+          controller: "profileCtrl"
         });
     }]);
 }());

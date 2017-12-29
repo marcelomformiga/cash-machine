@@ -7,16 +7,16 @@
   'use strict';
 
   angular.module('app')
-    .directive('userForm', [ function () {
+    .directive('profileForm', [ function () {
       return {
         restrict: 'E',
-        templateUrl: 'views/partials/users/user-form.html'
+        templateUrl: 'views/partials/profile/profile-form.html'
       }
     }])
     .directive('userList', [ function () {
       return {
         restrict: 'E',
-        templateUrl: 'views/partials/users/user-list.html'
+        templateUrl: 'views/partials/profile/profile-list.html'
       }
     }])
 }());

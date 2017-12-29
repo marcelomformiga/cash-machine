@@ -9,7 +9,7 @@
                     </div>
                     <div class="card-content">
                         <div class="row">
-                            <form name="form" class="col s12" ng-submit="saveUser()" novalidate>
+                            <form name="form" class="col s12" ng-submit="saveProfile()" novalidate>
                                 <div class="row">
                                     <small class="input-field col s6">
                                         <input placeholder="Nome" id="name" name="name" type="text" ng-model="user.username" ng-minlength=4 ng-maxlength=15 class="validate" not-empty required>
@@ -23,19 +23,13 @@
                                         </div>
                                     </small>
                                     <small class="input-field col s6">
-                                        <div ng-if="isEdit">
-                                            <input placeholder="Senha" id="passwordEdit" name="password" type="password" ng-minlength=6 ng-model="user.password" class="validate">
-                                            <label class="active">Password</label>
-                                        </div>
-                                        <div ng-if="!isEdit">
-                                            <input placeholder="Senha" id="password" name="password" type="password" ng-minlength=6 ng-model="user.password" class="validate"
-                                                   not-empty required>
-                                            <label class="active">Senha</label>
-                                            <div ng-show="form.password.$invalid && form.$submitted">
-                                                <div class="red-text">
-                                                    <div ng-show="form.password.$error.minlength">Mínimo 6 caracteres!</div>
-                                                    <div ng-show="form.password.$error.required">Campo Obrigatório!</div>
-                                                </div>
+                                        <input placeholder="Senha" id="password" name="password" type="password" ng-minlength=6 ng-model="user.password" class="validate"
+                                               not-empty required>
+                                        <label class="active">Senha</label>
+                                        <div ng-show="form.password.$invalid && form.$submitted">
+                                            <div class="red-text">
+                                                <div ng-show="form.password.$error.minlength">Mínimo 6 caracteres!</div>
+                                                <div ng-show="form.password.$error.required">Campo Obrigatório!</div>
                                             </div>
                                         </div>
                                         <p></p>
@@ -70,16 +64,20 @@
                                             </div>
                                         </div>
                                     </small>
-                                    <small class="input-field col s6">
+                                    <small class="input-field col s6" ng-show="isEdit === 'salvar'">
                                         <input placeholder="Saldo" id="saldo" name="saldo" type="number" ng-model="account.balance" ng-minlength=1 ng-maxlength=10 class="validate" not-empty required>
                                         <label class="active">Saldo</label>
                                     </small>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <button type="submit" class="waves-teal waves-effect btn cashmachine-color pull-left "><i class="fa fa-arrow-left"></i> Voltar</button>
+                                        <button type="button" ng-click="back()" class="waves-teal waves-effect btn cashmachine-color pull-left"><i class="fa fa-arrow-left "></i> Voltar</button>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <div class="input-field col s6" ng-show="isEdit === 'editar'">
+                                        <button type="submit" class="waves-teal waves-effect btn cashmachine-color pull-right "><i class="fa fa-check"></i> Salvar</button>
+                                        <button type="button" ng-click="deleteProfile()" class="waves-teal waves-effect btn cashmachine-color pull-left"><i class="fa fa-check"></i> Deletar</button>
+                                    </div>
+                                    <div class="input-field col s6" ng-show="isEdit === 'salvar'">
                                         <button type="submit" class="waves-teal waves-effect btn cashmachine-color pull-right "><i class="fa fa-check"></i> Salvar</button>
                                     </div>
                                 </div>

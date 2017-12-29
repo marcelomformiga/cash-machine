@@ -670,7 +670,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
 
                             event.preventDefault()
 
-                            // Re-focus onto the root so that users can click away
+                            // Re-focus onto the root so that profile can click away
                             // from elements focused within the picker.
                             P.$root.eq(0).focus()
                         }

@@ -2,6 +2,7 @@ package com.gsw.cashmachine.authentication.service;
 
 import com.gsw.cashmachine.authentication.request.AuthenticationSocketRequest;
 import com.gsw.cashmachine.authentication.response.AuthenticationSocketResponse;
+import com.gsw.cashmachine.domain.cashmachine.AuthenticationSocketException;
 import com.gsw.cashmachine.utils.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 /**
  * A classe UserSocketService e reponsavel por gerenciar as sessoes do servidor.
+ *
  * @author Eduardo Alves
  * @version 1.0
  */
@@ -30,21 +32,25 @@ public class UserSocketService {
     private Map<String, AuthenticationSocketRequest> usersMap;
 
     /**
-     * O Metodo e responsavel por criar uma sessao ao usuario
-     * e enviar a mensagem para o usuario de destino
+     * O Metodo e responsavel por adicionar o usuario a sessao para permitir um saque
+     *
      * @param request
      */
     public void connectUser(final AuthenticationSocketRequest request) {
-        String response = "joined";
-        checkIfUserConnected(request);
-        simpTemplate.convertAndSend(Constants.DESTINATION + Constants.JOIN + "/" + request.getToken(),
-                new AuthenticationSocketResponse(request.getSessionId(), response));
-        logger.info("Connected users: " + usersMap.size());
+        try {
+            addUser(request);
+            sendMessage(Constants.JOIN, request, checkLimitConnectedUsers(request));
+        } catch (AuthenticationSocketException e) {
+            sendMessage(Constants.JOIN, request, e.getMessage());
+            logger.error(e.getMessage());
+        }
+        logger.info("Connected profile: " + usersMap.size());
     }
 
     /**
      * O Metodo e responsavel por desconectar o usuario da sessao
      * e enviar uma mensagem ao usuário de destino
+     *
      * @param request
      */
     public void disconnectUser(final AuthenticationSocketRequest request) {
@@ -55,65 +61,34 @@ public class UserSocketService {
                 AuthenticationSocketRequest authentication = usersMap.get(iterate.next());
                 if (request.getSessionId().equals(authentication.getSessionId())) {
                     iterate.remove();
-                    simpTemplate.convertAndSend(Constants.DESTINATION + Constants.LEAVE + "/" + authentication.getToken(),
-                            new AuthenticationSocketResponse(authentication.getSessionId(), "disconnected"));
+                    sendMessage(Constants.LEAVE, authentication, "disconnect");
+                    break;
                 }
             }
         }
-        logger.info("Connected users: " + usersMap.size());
+        logger.info("Connected profile: " + usersMap.size());
     }
 
-    /**
-     * O metodo e resposnavel por manter a comunicacao entre o front e back da aplicacao
-     * A cada 15 minutos o front-end envia uma requisicao para manter a conexao, pois o nginx
-     * desconecta a sessao caso não haja comunicacao.
-     * @param request
-     */
-    public void heartbeat(final AuthenticationSocketRequest request) {
-        if (request.getToken() != null) {
-            simpTemplate.convertAndSend(Constants.DESTINATION + Constants.HEARTBEAT + "/" + request.getToken(),
-                    new AuthenticationSocketResponse(request.getSessionId(), "connected"));
-        }
+    private void sendMessage(final String constants, final AuthenticationSocketRequest request, final String message) {
+        simpTemplate.convertAndSend(Constants.DESTINATION + constants + "/" + request.getToken(),
+                new AuthenticationSocketResponse(request.getSessionId(), message));
     }
 
-    /**
-     * O metodo verifica se um determinado usuario tem sessao no servidor
-     * @param username
-     * @return boolean
-     */
-    public boolean isConnected(final String username) {
-        if (username != null) {
-            for (Map.Entry<String, AuthenticationSocketRequest> entry : usersMap.entrySet()) {
-                if (username.equals(entry.getKey())) return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * O metodo verifica se um determinado usuario tem sessao no servidor
-     * Caso não tenha, a requisicao e adiconada a sessao, caso contrario e
-     * enviado ao usuario ja conectado uma requisicao para desconectar sua sessao
-     * @param request
-     * @return boolean
-     */
-    private boolean checkIfUserConnected(final AuthenticationSocketRequest request) {
-        if (!usersMap.containsKey(request.getUsername())) {
-            usersMap.put(request.getUsername(), request);
-            return true;
+    private String checkLimitConnectedUsers(final AuthenticationSocketRequest request) throws AuthenticationSocketException {
+        if (usersMap.size() >= 5) {
+            throw new AuthenticationSocketException("User limit exceeded");
         } else {
-            try {
-                AuthenticationSocketRequest user = usersMap.get(request.getUsername());
-                simpTemplate.convertAndSend(Constants.DESTINATION + Constants.LEAVE + "/" + user.getToken(),
-                        new AuthenticationSocketResponse(user.getSessionId(), "leave"));
-                usersMap.remove(request.getUsername());
-                usersMap.put(request.getUsername(), request);
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            usersMap.put(request.getUsername(), request);
+            return "joined";
         }
-        return false;
+    }
+
+    private void addUser(final AuthenticationSocketRequest request) throws AuthenticationSocketException {
+        if ( usersMap.containsKey(request.getUsername())) {
+            throw new AuthenticationSocketException("User already connected");
+        } else {
+            usersMap.put(request.getUsername(), request);
+        }
     }
 
     @Bean

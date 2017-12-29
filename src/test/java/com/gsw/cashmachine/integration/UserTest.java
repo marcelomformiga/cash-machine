@@ -68,7 +68,7 @@ public class UserTest extends AbstractApplicationTest {
     @Test
     public void getAllUsersTest() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        String result = super.mockMvcPerformGetAll("/api/users");
+        String result = super.mockMvcPerformGetAll("/api/profile");
         List<User> userList = mapper.readValue(result, mapper.getTypeFactory().constructCollectionType(List.class, User.class));
         Assert.assertNotNull(userList);
     }

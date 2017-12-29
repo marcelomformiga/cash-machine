@@ -6,30 +6,30 @@
 (function () {
   'use strict';
 
-  angular.module('app').service('userService', ['api', function (api) {
+  angular.module('app').service('profileService', ['api', function (api) {
 
-    this.loadUsers = function (entry) {
-      return api.loadUsers(entry)
+    this.loadProfile = function (entry) {
+      return api.loadProfile(entry)
         .then(function (res) {
           return res.data;
         });
     };
 
-    this.deleteUser = function (entry) {
-      return api.deleteUser(entry)
+    this.deleteProfile = function (entry) {
+      return api.deleteProfile(entry)
         .then(function (res) {
           return res.status;
         });
     };
 
-    this.saveUser = function (entry) {
+    this.saveProfile = function (entry) {
       if (entry.hasOwnProperty('id') && entry.id) {
-        return api.editUser(entry)
+        return api.editProfile(entry)
           .then(function (res) {
             return res;
           });
       } else {
-        return api.saveUser(entry)
+        return api.saveProfile(entry)
           .then(function (res) {
             return res;
           });

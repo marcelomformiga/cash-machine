@@ -10,6 +10,5 @@ public class Constants {
     public static final String CHAT_CONECTION = "/chat";
     public static final String JOIN = "/join";
     public static final String LEAVE = "/leave";
-    public static final String HEARTBEAT = "/heartbeat";
 
 }
