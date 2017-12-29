@@ -34,7 +34,7 @@ public class Account implements Serializable {
     private String account;
 
     @Column(name = "balance", nullable = false)
-    private BigDecimal balance;
+    private Double balance;
 
     @JsonIgnore
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -46,14 +46,14 @@ public class Account implements Serializable {
 
     public Account() {}
 
-    public Account(String agency, String account, BigDecimal balance, User user) {
+    public Account(String agency, String account, Double balance, User user) {
         this.agency = agency;
         this.account = account;
         this.balance = balance;
         this.user = user;
     }
 
-    public Account(String agency, String account, BigDecimal balance, User user, List<Transaction> transactionList) {
+    public Account(String agency, String account, Double balance, User user, List<Transaction> transactionList) {
         this.agency = agency;
         this.account = account;
         this.balance = balance;

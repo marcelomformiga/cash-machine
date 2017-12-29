@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="row">
                                     <small class="input-field col s6">
-                                        <input placeholder="Agencia" id="agencia" name="agencia" type="text" ng-model="account.agency" ng-minlength=4 ng-maxlength=4 class="validate" not-empty required>
+                                        <input ui-mask="9999" id="agencia" name="agencia" type="text" ng-model="account.agency" ng-minlength=4 ng-maxlength=4 class="validate" not-empty required>
                                         <label class="active">Agencia</label>
                                         <div ng-show="form.name.$invalid && form.$submitted">
                                             <div class="red-text">
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="row">
                                     <small class="input-field col s6">
-                                        <input placeholder="Conta" id="conta" name="conta" type="text" ng-model="account.account" ng-minlength=6 ng-maxlength=6 class="validate" not-empty required>
+                                        <input  id="conta" name="conta" ui-mask="9999-9" type="text" ng-model="account.account" ng-minlength=6 ng-maxlength=6 class="validate" not-empty required>
                                         <label class="active">Conta</label>
                                         <div ng-show="form.name.$invalid && form.$submitted">
                                             <div class="red-text">
@@ -65,7 +65,7 @@
                                         </div>
                                     </small>
                                     <small class="input-field col s6" ng-show="isEdit === 'salvar'">
-                                        <input placeholder="Saldo" id="saldo" name="saldo" type="number" ng-model="account.balance" ng-minlength=1 ng-maxlength=10 class="validate" not-empty required>
+                                        <input type="text" id="saldo" name="saldo" ng-model="account.balance" money-mask class="validate" not-empty required/>
                                         <label class="active">Saldo</label>
                                     </small>
                                 </div>

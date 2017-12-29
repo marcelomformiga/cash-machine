@@ -1,0 +1,39 @@
+<div class="content" id="divForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card z-depth-4" >
+                    <div class="card-header" >
+                        <h5 class="title">Saque</h5>
+                        <p class="category">Escolha uma opção para saque</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <form name="form" class="col s12" ng-submit="process()" novalidate>
+                                <div class="row">
+                                    <small class="input-field col s6">
+                                        <input type="text" name="value" ng-model="account.account" money-mask class="validate" not-empty required/>
+                                        <label class="active">Valor</label>
+                                        <div ng-show="form.name.$invalid && form.$submitted">
+                                            <div class="red-text">
+                                                <div ng-show="form.name.$error.required">Campo Obrigatório!</div>
+                                            </div>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <button type="button" ng-click="back()" class="waves-teal waves-effect btn cashmachine-color pull-left"><i class="fa fa-arrow-left "></i> Voltar</button>
+                                    </div>
+                                    <div class="input-field col s6" >
+                                        <button type="submit" class="waves-teal waves-effect btn cashmachine-color pull-right "><i class="fa fa-check"></i> Confirmar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

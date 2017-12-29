@@ -3152,7 +3152,7 @@ var Transition = /** @class */ (function () {
      * Promise.all(promises).then(values => console.log("Resolved values: " + values));
      * ```
      *
-     * Note: Angular 1 profile whould use `$q.all()`
+     * Note: Angular 1 users whould use `$q.all()`
      *
      * @param pathname resolve context's path name (e.g., `to` or `from`)
      *
@@ -3709,7 +3709,7 @@ var ParamTypes = /** @class */ (function () {
     /**
      * Registers a parameter type
      *
-     * End profile should call [[UrlMatcherFactory.type]], which delegates to this method.
+     * End users should call [[UrlMatcherFactory.type]], which delegates to this method.
      */
     ParamTypes.prototype.type = function (name, definition, definitionFn) {
         if (!isDefined(definition))
@@ -8298,7 +8298,7 @@ var StateProvider = /** @class */ (function () {
      * The builder functions that can be decorated are listed below. Though not all
      * necessarily have a good use case for decoration, that is up to you to decide.
      *
-     * In addition, profile can attach custom decorators, which will generate new
+     * In addition, users can attach custom decorators, which will generate new
      * properties within the state's internal definition. There is currently no clear
      * use-case for this beyond accessing internal states (i.e. $state.$current),
      * however, expect this to become increasingly relevant as we introduce additional
@@ -8905,7 +8905,7 @@ var getLocals = function (ctx) {
  * function SomeService($http, $stateParams) {
  *   return {
  *     getUser: function() {
- *       return $http.get('/api/profile/' + $stateParams.username);
+ *       return $http.get('/api/users/' + $stateParams.username);
  *     }
  *   }
  * };
@@ -9044,9 +9044,9 @@ function bindEvents(element, scope, hookFn, uiStateOpts) {
  * update the `href` attribute (using the [[StateService.href]]  method).
  *
  * #### Example:
- * Assuming the `profile` state has a url of `/profile/`
+ * Assuming the `users` state has a url of `/users/`
  * ```html
- * <a ui-sref="profile" href="/profile/">Users</a>
+ * <a ui-sref="users" href="/users/">Users</a>
  * ```
  *
  * ### Parameter Values
@@ -9055,11 +9055,11 @@ function bindEvents(element, scope, hookFn, uiStateOpts) {
  * The content inside the parentheses is an expression, evaluated to the parameter values.
  *
  * #### Example:
- * This example renders a list of links to profile.
+ * This example renders a list of links to users.
  * The state's `userId` parameter value comes from each user's `user.id` property.
  * ```html
- * <li ng-repeat="user in profile">
- *   <a ui-sref="profile.detail({ userId: user.id })">{{ user.displayName }}</a>
+ * <li ng-repeat="user in users">
+ *   <a ui-sref="users.detail({ userId: user.id })">{{ user.displayName }}</a>
  * </li>
  * ```
  *
@@ -9339,7 +9339,7 @@ uiState = ['$uiRouter', '$timeout',
  *
  * #### Example:
  * ```html
- * <li ng-repeat="user in profile" ui-sref-active="active">
+ * <li ng-repeat="user in users" ui-sref-active="active">
  *   <a ui-sref="user.details({ userId: user.id })">{{ user.lastName }}</a>
  * </li>
  * ```
@@ -9363,7 +9363,7 @@ uiState = ['$uiRouter', '$timeout',
  * ```html
  * <ul>
  *   <li ui-sref-active="active" class="item active">
- *     <a ui-sref="app.user({user: 'bilbobaggins'})" href="/profile/bilbobaggins">@bilbobaggins</a>
+ *     <a ui-sref="app.user({user: 'bilbobaggins'})" href="/users/bilbobaggins">@bilbobaggins</a>
  *   </li>
  * </ul>
  * ```

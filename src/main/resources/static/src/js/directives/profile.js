@@ -4,19 +4,13 @@
  */
 
 (function () {
-  'use strict';
+    'use strict';
 
-  angular.module('app')
-    .directive('profileForm', [ function () {
-      return {
-        restrict: 'E',
-        templateUrl: 'views/partials/profile/profile-form.html'
-      }
-    }])
-    .directive('userList', [ function () {
-      return {
-        restrict: 'E',
-        templateUrl: 'views/partials/profile/profile-list.html'
-      }
-    }])
+    angular.module('app')
+        .directive('profileForm', [function () {
+            return {
+                restrict: 'E',
+                templateUrl: 'views/partials/profile/profile-form.html'
+            }
+        }])
 }());

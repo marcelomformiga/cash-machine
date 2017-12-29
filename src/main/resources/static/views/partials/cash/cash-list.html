@@ -4,28 +4,23 @@
             <div class="col-md-12">
                 <div class="card z-depth-4">
                     <div class="card-header" >
-                        <h5 class="title">Usuários</h5>
-                        <p class="category">Lista de usuários</p>
+                        <h5 class="title">Valor Sacado</h5>
+                        <p class="category">Valor Total: {{cash.value}}</p>
                     </div>
                     <div class="card-content table-responsive">
                         <table class="table table-responsive">
                             <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Perfil</th>
-                                <th></th>
+                                <th>Nota</th>
+                                <th>Quantidade</th>
+                                <th>Total</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="userView in users" ng-class="userView.id === user.id  ? 'selected-to-edit' : ''">
                                 <td>{{userView.username}}</td>
                                 <td>{{userView.toShowRole}}</td>
-                                <td>
-                                    <button ng-click="deleteUser(userView)" type="submit" ng-class="userForm || userView.loged  ? 'disabled' : ''"
-                                            class="btn-floating btn waves-effect waves-light red darken-2 pull-right"><span class="fa fa-trash"></span></button>
-                                    <button ng-click="editUser(userView)" type="submit" ng-class="userForm ? 'disabled' : ''"
-                                       class="btn-floating btn waves-effect waves-light cashmachine-color pull-right"><span class="fa fa-pencil"></span></button>
-                                </td>
+                                <td>{{userView.toShowRole}}</td>
                             </tr>
                             </tbody>
                         </table>
