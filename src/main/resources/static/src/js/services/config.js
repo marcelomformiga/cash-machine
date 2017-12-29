@@ -5,7 +5,7 @@
     envService.set(environment.PROD);
 
     this.apiUrl = function () {
-      return envService.read('monitUrl');
+      return envService.read('cashmachineUrl');
     };
   }]);
 }());

@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').directive('monitFooter', [ function () {
+  angular.module('app').directive('cashmachineFooter', [ function () {
     return {
       restrict: 'E',
       templateUrl: 'views/partials/footer.html'

@@ -6,10 +6,10 @@
     envServiceProvider.config({
       vars: {
         production: {
-          monitUrl: 'http://'+ location.host
+          cashmachineUrl: 'http://'+ location.host
         },
         development: {
-          monitUrl: 'http://' + location.host.substring(0, location.host.lastIndexOf(":")) + ':8080'
+            cashmachineUrl: 'http://' + location.host.substring(0, location.host.lastIndexOf(":")) + ':8080'
         }
       }
     });

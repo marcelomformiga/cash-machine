@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  angular.module('app').directive('monitHeader', [ function () {
+  angular.module('app').directive('cashmachineHeader', [ function () {
     return {
       restrict: 'E',
       templateUrl: 'views/partials/header.html',
