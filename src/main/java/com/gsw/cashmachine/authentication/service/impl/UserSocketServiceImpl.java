@@ -67,7 +67,8 @@ public class UserSocketServiceImpl implements UserSocketService {
     }
 
     private String checkLimitConnectedUsers(final AuthenticationSocketRequest request) throws AuthenticationSocketException {
-        if (usersMap.size() >= 5) {
+        logger.info("checkLimitConnectedUsers: " + usersMap.size());
+        if (usersMap.size() > 5) {
             throw new AuthenticationSocketException("User limit exceeded");
         } else {
             usersMap.put(request.getUsername(), request);

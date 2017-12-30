@@ -7,7 +7,7 @@
 }
 
 nav {
-    background-color: #26a69a;
+    background-color: #5a82ae;
 }
 
 nav .brand-logo {
@@ -51,7 +51,7 @@ nav .brand-logo {
 }
 
 .card .card-header {
-    background-color: #26a69a;
+    background-color: #5a82ae;
     border-radius: 3px;
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     margin: -20px 15px 0;
@@ -118,7 +118,7 @@ table tr:last-child {
 }
 
 .cashmachine-color {
-    background-color: #26a69a !important;
+    background-color: #5a82ae !important;
 }
 
 body {

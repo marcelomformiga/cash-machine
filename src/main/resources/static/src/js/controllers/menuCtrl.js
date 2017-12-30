@@ -7,14 +7,19 @@
     'use strict';
 
     angular.module('app')
-        .controller('menuCtrl', ['$scope', 'authUser', '$location',
-                function ($scope, authUser, $location) {
+        .controller('menuCtrl', ['$scope', 'authUser', '$location', 'socketService',
+            function ($scope, authUser, $location, socketService) {
+
 
                     var KEY_STORAGE = 'token';
+                    var KEY_SESSION = 'sessionId';
 
                     StorageHelper.setItem("previous_page", "menu");
-
                     authUser.authorize();
+                    console.log(StorageHelper.getItem(KEY_SESSION));
+                    if(StorageHelper.getItem(KEY_SESSION)) {
+                        socketService.disconnect();
+                    }
 
                     $("body").removeClass('cashmachine-color');
 
