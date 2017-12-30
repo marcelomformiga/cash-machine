@@ -63,12 +63,28 @@ nav .brand-logo {
 }
 
 .card .card-header .category {
-    color: rgba(255, 255, 255, 0.62);
     margin-bottom: 0;
+    color: #f3f3f3;
 }
 
 .card-menu :hover {
-    background-color: #a64a33;
+    background-color: #48638c;
+}
+
+.card-menu > a {
+    color: #f3f2e5;
+}
+
+.card-menu-color {
+    background-color: #5a82ae;
+    border-radius: 3px;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    margin: -20px 15px 0;
+    padding: 15px;
+}
+
+.card .card-header .card-menu-color {
+    background-color: #a6006a;
 }
 
 .card .card-content .category:not([class*="text-"]) {

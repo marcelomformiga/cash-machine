@@ -1,13 +1,11 @@
 package com.gsw.cashmachine.authentication.security;
 
-import com.gsw.cashmachine.authentication.service.UserSocketService;
 import com.gsw.cashmachine.authentication.user.AuthenticationUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;

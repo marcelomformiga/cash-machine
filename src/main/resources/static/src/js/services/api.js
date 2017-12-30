@@ -20,6 +20,18 @@
             });
         };
 
+        this.process = function (entry) {
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/api/cash',
+                data: entry,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
         this.saveProfile = function (entry) {
             return $http({
                 method: 'POST',

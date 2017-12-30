@@ -17,10 +17,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="userView in users" ng-class="userView.id === user.id  ? 'selected-to-edit' : ''">
-                                <td>{{userView.username}}</td>
-                                <td>{{userView.toShowRole}}</td>
-                                <td>{{userView.toShowRole}}</td>
+                            <tr ng-repeat="note in notes">
+                                <td>{{note.note}}</td>
+                                <td>{{note.value}}</td>
+                                <td>{{note.note}}*{{note.value}}</td>
                             </tr>
                             </tbody>
                         </table>

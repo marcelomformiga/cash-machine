@@ -1,4 +1,4 @@
-package com.gsw.cashmachine.authentication.service;
+package com.gsw.cashmachine.authentication.service.impl;
 
 import com.gsw.cashmachine.authentication.factory.UserFactory;
 import com.gsw.cashmachine.domain.user.User;
