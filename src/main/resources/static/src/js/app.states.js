@@ -40,6 +40,11 @@
                     templateUrl: "views/pages/deposit.html",
                     controller: "depositCtrl"
                 })
+                .state('home.transaction', {
+                    url: "/transaction",
+                    templateUrl: "views/pages/transaction.html",
+                    controller: "transactionCtrl"
+                })
                 .state('home.profile', {
                     url: "/profile",
                     templateUrl: "views/pages/profile.html",

@@ -8,6 +8,7 @@ import com.gsw.cashmachine.domain.cash.Cash;
 import com.gsw.cashmachine.domain.cash.CashService;
 import com.gsw.cashmachine.domain.cashmachine.CashMachineException;
 import com.gsw.cashmachine.domain.cashmachine.CashMachineService;
+import com.gsw.cashmachine.domain.transaction.TransactionService;
 import com.gsw.cashmachine.domain.user.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,11 @@ public class CashMachineServiceIml implements CashMachineService {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private TransactionService transactionService;
+
     @Override
-    public AccountResponse cashout(AccountRequest accountRequest) {
+    public AccountResponse cashout(final AccountRequest accountRequest) {
         try {
             List<Cash> cash = cashService.processValue(accountRequest.getValue());
             accountService.cashOut(accountRequest);
@@ -38,7 +42,7 @@ public class CashMachineServiceIml implements CashMachineService {
     }
 
     @Override
-    public AccountResponse deposit(AccountRequest request) {
+    public AccountResponse deposit(final AccountRequest request) {
         try {
             accountService.deposit(request);
             return new AccountResponse("SUCCESS");
@@ -48,9 +52,19 @@ public class CashMachineServiceIml implements CashMachineService {
     }
 
     @Override
-    public AccountResponse getBalance(String username) {
+    public AccountResponse getBalance(final String username) {
         try {
             return new AccountResponse("SUCCESS", accountService.getBalance(username));
+        } catch (UserNotFoundException e) {
+            return new AccountResponse(e.getMessage());
+        }
+    }
+
+    @Override
+    public AccountResponse loadTrasactionsByUsername(final String username) {
+        try {
+            return new AccountResponse("SUCCESS",
+                    transactionService.loadTransactionsByUsername(username));
         } catch (UserNotFoundException e) {
             return new AccountResponse(e.getMessage());
         }

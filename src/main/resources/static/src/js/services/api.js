@@ -45,6 +45,20 @@
             });
         };
 
+        this.loadTransactions = function (entry) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/transaction',
+                params: {
+                    username: entry.username
+                },
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
         this.loadProfile = function (entry) {
             return $http({
                 method: 'GET',

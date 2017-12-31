@@ -15,8 +15,11 @@
                     var KEY_SESSION = 'sessionId';
 
                     StorageHelper.setItem("previous_page", "menu");
+
                     authUser.authorize();
+
                     if(StorageHelper.getItem(KEY_SESSION)) {
+                        StorageHelper.removeItem(KEY_SESSION);
                         socketService.disconnect();
                     }
 

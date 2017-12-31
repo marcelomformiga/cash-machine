@@ -1,0 +1,37 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card z-depth-4">
+                    <div class="card-header" >
+                        <h5 class="title">Últimos lançamentos</h5>
+                        <p class="category">Movimentação de entrada e saída da conta</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <th>Valor</th>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="transaction in transactions">
+                                <td>R$ {{transaction.value}}</td>
+                                <td>{{transaction.date}}</td>
+                                <td>{{transaction.transaction_type}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <button type="button" ng-click="back()" class="waves-teal waves-effect btn cashmachine-color pull-left"><i class="fa fa-arrow-left "></i> Voltar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

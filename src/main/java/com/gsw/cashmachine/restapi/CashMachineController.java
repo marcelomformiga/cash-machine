@@ -42,8 +42,16 @@ public class CashMachineController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/balance", method = RequestMethod.GET)
-    public ResponseEntity<User> balance(@RequestParam("username") String username) {
+    public ResponseEntity<AccountResponse> balance(@RequestParam("username") String username) {
         AccountResponse balance = cashMachineService.getBalance(username);
         return new ResponseEntity(balance, HttpStatus.OK);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(path = "/transaction", method = RequestMethod.GET)
+    public ResponseEntity<AccountResponse> transaction(@RequestParam("username") String username) {
+        AccountResponse transaction = cashMachineService.loadTrasactionsByUsername(username);
+        return new ResponseEntity(transaction, HttpStatus.OK);
+    }
+
 }

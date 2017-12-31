@@ -11,7 +11,9 @@ public interface CashMachineService {
 
     AccountResponse cashout(final AccountRequest accountRequest);
 
-    AccountResponse deposit(AccountRequest request);
+    AccountResponse deposit(final AccountRequest request);
 
-    AccountResponse getBalance(String username);
+    AccountResponse getBalance(final String username);
+
+    AccountResponse loadTrasactionsByUsername(final String username);
 }
