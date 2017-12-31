@@ -4,7 +4,8 @@ import com.gsw.cashmachine.authentication.request.AccountRequest;
 import com.gsw.cashmachine.domain.user.UserNotFoundException;
 
 /**
- * Created by eduardo on 30/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public interface AccountService {
 

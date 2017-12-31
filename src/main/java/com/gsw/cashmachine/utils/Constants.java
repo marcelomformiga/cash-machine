@@ -1,7 +1,8 @@
 package com.gsw.cashmachine.utils;
 
 /**
- * Created by eduardo on 25/07/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public class Constants {
 

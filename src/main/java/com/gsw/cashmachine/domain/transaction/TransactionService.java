@@ -6,7 +6,8 @@ import com.gsw.cashmachine.domain.user.UserNotFoundException;
 import java.util.List;
 
 /**
- * Created by eduardo on 30/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public interface TransactionService {
 

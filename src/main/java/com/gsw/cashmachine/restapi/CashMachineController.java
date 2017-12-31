@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by eduardo on 29/12/17.
+ * A classe UserController e reponsavel por disponiblizar os servicos de caixa eletronico
+ *
+ * @author Eduardo Alves
+ * @version 1.0
  */
 @Log4j
 @RestController

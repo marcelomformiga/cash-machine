@@ -1,7 +1,8 @@
 package com.gsw.cashmachine.domain.transaction;
 
 /**
- * Created by eduardo on 28/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public enum TransactionType {
 

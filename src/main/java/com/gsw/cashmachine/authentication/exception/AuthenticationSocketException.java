@@ -1,7 +1,8 @@
 package com.gsw.cashmachine.authentication.exception;
 
 /**
- * Created by eduardo on 29/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public class AuthenticationSocketException extends Exception {
 

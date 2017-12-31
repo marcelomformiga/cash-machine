@@ -13,7 +13,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- * Created by eduardo on 30/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 @Service
 public class TransactionServiceImpl implements TransactionService {

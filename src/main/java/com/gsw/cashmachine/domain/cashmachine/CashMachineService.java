@@ -5,7 +5,8 @@ import com.gsw.cashmachine.authentication.response.AccountResponse;
 import com.gsw.cashmachine.domain.user.User;
 
 /**
- * Created by eduardo on 29/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public interface CashMachineService {
 

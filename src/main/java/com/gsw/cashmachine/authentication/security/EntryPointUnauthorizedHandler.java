@@ -18,15 +18,6 @@ import java.io.IOException;
 @Component
 public class EntryPointUnauthorizedHandler implements AuthenticationEntryPoint {
 
-    /**
-     * O metodo commence e responsavel por retornar o status de UNAUTHORIZED (401) ao usuario caso
-     * a requisicao nao seja autorizada.
-     * @param httpServletRequest
-     * @param httpServletResponse
-     * @param e
-     * @throws IOException
-     * @throws ServletException
-     */
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access Denied");

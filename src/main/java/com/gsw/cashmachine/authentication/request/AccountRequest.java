@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author Eduardo Alves
+ * @version 1.0
+ */
 @Data
 public class AccountRequest implements Serializable {
 

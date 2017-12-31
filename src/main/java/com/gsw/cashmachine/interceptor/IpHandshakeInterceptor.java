@@ -12,6 +12,7 @@ import java.util.Map;
 /**
  * A classe IpHandshakeInterceptor e responsavel por interceptar registrar os endereços de conexoes
  * realizadas no servidor
+ *
  * @author Eduardo Alves
  * @version 1.0
  */

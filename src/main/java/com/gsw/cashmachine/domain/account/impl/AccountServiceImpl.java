@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 /**
- * Created by eduardo on 28/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 @Service
 public class AccountServiceImpl implements AccountService {

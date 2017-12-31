@@ -5,7 +5,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * Created by eduardo on 29/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 @Data
 public class Cash implements Serializable {

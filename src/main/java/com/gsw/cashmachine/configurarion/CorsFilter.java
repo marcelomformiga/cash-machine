@@ -19,15 +19,6 @@ public class CorsFilter implements Filter {
     @Value("${cashmachine.token.header}")
     private String tokenHeader;
 
-    /**
-     * O metodo e reponsavel por informar ao solicitante os tipos de requisicoes
-     * permitidas na API e quais parametros podem ser informados no header
-     * @param req
-     * @param res
-     * @param chain
-     * @throws IOException
-     * @throws ServletException
-     */
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         response.setHeader("Access-Control-Allow-Origin", "*");

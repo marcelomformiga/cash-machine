@@ -1,7 +1,8 @@
 package com.gsw.cashmachine.domain.cash;
 
 /**
- * Created by eduardo on 30/12/17.
+ * @author Eduardo Alves
+ * @version 1.0
  */
 public enum Note {
 

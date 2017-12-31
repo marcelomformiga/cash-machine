@@ -1,6 +1,5 @@
 package com.gsw.cashmachine.domain.user.impl;
 
-import com.gsw.cashmachine.domain.transaction.Transaction;
 import com.gsw.cashmachine.domain.transaction.TransactionRepository;
 import com.gsw.cashmachine.domain.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +32,6 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    /**
-     * O metodo e reponsavel por salvar um objeto usuario.
-     * Caso o usuario ja exista no banco de dados e retornado uma excecao
-     *
-     * @param user
-     * @return User
-     * @throws ExistUserException
-     */
     @Override
     @Transactional
     public User save(final User user) throws ExistUserException {
@@ -53,18 +44,11 @@ public class UserServiceImpl implements UserService {
         return userEntity;
     }
 
-    /**
-     * O metodo e reponsavel por editar um objeto usuario.
-     * Caso o usuario informe um novo password será gerado uma nova criptografica
-     * para persistir no banco de dados.
-     *
-     * @param user
-     */
     @Override
     public User edit(final User user) throws ExistUserException, UserNotFoundException {
         User userById = loadUserById(user.getId());
         User userEntity = this.userRepository.findByUsername(user.getUsername());
-        if(userEntity != null) compareUsers(userById, userEntity);
+        if (userEntity != null) compareUsers(userById, userEntity);
         if (user.getPassword().equals("") || user.getPassword() == null) {
             userById.setPassword(userById.getPassword());
             return userRepository.save(user);
@@ -79,23 +63,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * O metodo e reponsavel por deletar usuario.
-     *
-     * @param user
-     */
     @Override
     public void delete(final User user) throws UserNotFoundException {
         User byUsername = loadUserByUsername(user.getUsername());
         userRepository.delete(byUsername);
     }
 
-    /**
-     * O metodo e reponsavel por retornar um usuario realizando a busca por nome
-     *
-     * @param username
-     * @return User
-     */
+
     @Override
     public User loadUserByUsername(String username) throws UserNotFoundException {
         User userEntity = this.userRepository.findByUsername(username);
@@ -110,11 +84,6 @@ public class UserServiceImpl implements UserService {
         return userEntity;
     }
 
-    /**
-     * O metodo e reponsavel por retornar uma lista de usuarios.
-     *
-     * @return
-     */
     @Override
     public List<User> getAllUsers() throws UserNotFoundException {
         List<User> userList = userRepository.findAll();

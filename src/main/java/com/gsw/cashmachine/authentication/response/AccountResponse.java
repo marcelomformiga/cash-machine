@@ -7,6 +7,10 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author Eduardo Alves
+ * @version 1.0
+ */
 @Data
 public class AccountResponse implements Serializable {
 
