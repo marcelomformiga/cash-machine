@@ -136,3 +136,11 @@ footer {
     height: 100px;
     text-align: center;
 }
+
+.fblogo {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 140px;
+}
+
