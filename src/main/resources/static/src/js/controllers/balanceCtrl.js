@@ -12,7 +12,7 @@
 
                     var user = authUser.getUser();
 
-                    StorageHelper.setItem("previous_page", "cash");
+                    StorageHelper.setItem("previous_page", "balance");
                     $scope.cash = {};
                     authUser.authorize();
 

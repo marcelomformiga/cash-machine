@@ -19,6 +19,18 @@
             });
         };
 
+        this.deposit = function (entry) {
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/api/deposit',
+                data: entry,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
         this.loadBalance = function (entry) {
             return $http({
                 method: 'GET',
