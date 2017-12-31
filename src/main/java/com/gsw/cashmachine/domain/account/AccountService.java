@@ -8,7 +8,7 @@ import com.gsw.cashmachine.domain.user.UserNotFoundException;
  */
 public interface AccountService {
 
-    Account checkBalanceByUsername(AccountRequest accountRequest) throws AccountException, UserNotFoundException;
+    Account checkBalanceByUsername(final AccountRequest accountRequest) throws AccountException, UserNotFoundException;
 
     void cashOut(final AccountRequest accountRequest) throws AccountException, UserNotFoundException;
 
