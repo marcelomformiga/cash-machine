@@ -34,6 +34,7 @@
                                 .then(function (res) {
                                     if (res.status === 201) {
                                         $scope.user = res.data;
+                                        refreshToken(res.data);
                                         toastr.success('Salvo com sucesso', {timeOut: 900});
                                     } else if (res.status === 200) {
                                         refreshToken(res.data);
@@ -62,9 +63,10 @@
                             closeOnConfirm: true
                         }, function (isConfirm) {
                             if (isConfirm) {
+                                $scope.user.username = user.username;
                                 profileService.deleteProfile($scope.user)
-                                    .then(function (status) {
-                                        if (status === 200) {
+                                    .then(function (res) {
+                                        if (res.status === 200) {
                                             logout();
                                             toastr.success('Deletado com Sucesso', {timeOut: 900});
                                         }  else {
@@ -111,6 +113,7 @@
                                 StorageHelper.setItem(KEY_STORAGE, data.token);
                                 authUser.setLogged(true);
                                 authUser.setUser(entry);
+                                user = authUser.getUser();
                             })
                             .catch(function (error) {
                                 console.log(error);

@@ -8,7 +8,7 @@ angular.module('app').service('socketService', ['$rootScope', function ($rootSco
   var wrappedSocket = {
 
     init: function () {
-      var socket = new WebSocket('ws://' + location.hostname + ":" + location.port + location.pathname + 'chat/websocket');
+      var socket = new WebSocket('ws://' + location.hostname + ":" + location.port + location.pathname + 'cashmachine/websocket');
       stompClient = Stomp.over(socket);
       stompClient.debug = null;
       stompClient.heartbeat.outgoing = 1000;

@@ -54,6 +54,12 @@ public class Account implements Serializable {
         this.user = user;
     }
 
+    public Account(String agency, String account, Double balance) {
+        this.agency = agency;
+        this.account = account;
+        this.balance = balance;
+    }
+
     public Account(String agency, String account, Double balance, User user, List<Transaction> transactionList) {
         this.agency = agency;
         this.account = account;

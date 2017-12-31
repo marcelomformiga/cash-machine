@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A classe UserService e reponsavel por gerenciar as operacoes de CRUD de usuario.
@@ -63,14 +64,18 @@ public class UserServiceImpl implements UserService {
     public User edit(final User user) throws ExistUserException, UserNotFoundException {
         User userById = loadUserById(user.getId());
         User userEntity = this.userRepository.findByUsername(user.getUsername());
-        if (userEntity.getId() != userById.getId()) {
-            throw new ExistUserException();
-        }
+        if(userEntity != null) compareUsers(userById, userEntity);
         if (user.getPassword().equals("") || user.getPassword() == null) {
             userById.setPassword(userById.getPassword());
             return userRepository.save(user);
         } else {
             return userRepository.save(new User(user.getId(), user.getUsername(), encoder.encode(user.getPassword()), user.getAuthorities(), user.getEmail(), user.getAccount()));
+        }
+    }
+
+    private void compareUsers(final User user1, final User user2) throws ExistUserException {
+        if (!Objects.equals(user1.getId(), user2.getId())) {
+            throw new ExistUserException();
         }
     }
 
