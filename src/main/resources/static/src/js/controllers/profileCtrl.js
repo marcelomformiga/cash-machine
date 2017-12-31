@@ -42,8 +42,10 @@
                                         toastr.error('Não foi possível salvar o usuário', {timeOut: 900});
                                     }
                                 })
-                                .catch(function () {
-                                    toastr.error('Ocorreu um problema ao salvar o usuário', {timeOut: 900});
+                                .catch(function (res) {
+                                    if (res.status === 409) {
+                                        toastr.error('Usuário Existente!', {timeOut: 900});
+                                    }
                                 })
                         }
                     };
@@ -65,12 +67,14 @@
                                         if (status === 200) {
                                             logout();
                                             toastr.success('Deletado com Sucesso', {timeOut: 900});
-                                        } else {
+                                        }  else {
                                             toastr.error('Não foi possível deletar o usuário', {timeOut: 900});
                                         }
                                     })
-                                    .catch(function () {
-                                        toastr.error('Ocorreu um problema ao deletar o usuário', {timeOut: 900});
+                                    .catch(function (res) {
+                                        if (res.status === 404) {
+                                            toastr.error('Usuário não encontrado', {timeOut: 900});
+                                        }
                                     });
                             }
                         });
@@ -80,12 +84,17 @@
                         if(typeof user !== "undefined") {
                             profileService.loadProfile(user)
                                 .then(function (user) {
-                                    $scope.user = user;
-                                    $scope.user.password = "";
-                                    $scope.account = $scope.user.account;
+                                    if (user.status === 200) {
+                                        $scope.user = user.data;
+                                        $scope.user.password = "";
+                                        $scope.account = $scope.user.account;
+                                        toastr.success('Carregado com Sucesso', {timeOut: 900});
+                                    }
                                 })
-                                .catch(function () {
-                                    toastr.error('Ocorreu um problema ao carregar os usuários', {timeOut: 900});
+                                .catch(function (user) {
+                                    if (user.status === 404) {
+                                        toastr.error('Usuário não encontrado', {timeOut: 900});
+                                    }
                                 });
                         }
                     }
@@ -94,6 +103,11 @@
                     function refreshToken(entry) {
                         loginService.refreshToken(entry)
                             .then(function (data) {
+                                if (status === 200) {
+                                    toastr.success('Carregado com Sucesso', {timeOut: 900});
+                                } else if (data.status === 404) {
+                                    toastr.error('Usuário não encontrado', {timeOut: 900});
+                                }
                                 StorageHelper.setItem(KEY_STORAGE, data.token);
                                 authUser.setLogged(true);
                                 authUser.setUser(entry);

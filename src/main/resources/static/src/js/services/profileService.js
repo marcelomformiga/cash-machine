@@ -11,14 +11,14 @@
     this.loadProfile = function (entry) {
       return api.loadProfile(entry)
         .then(function (res) {
-          return res.data;
+          return res;
         });
     };
 
     this.deleteProfile = function (entry) {
       return api.deleteProfile(entry)
         .then(function (res) {
-          return res.status;
+          return res;
         });
     };
 

@@ -9,11 +9,13 @@ public interface UserService {
 
     User save(final User user) throws ExistUserException;
 
-    User edit(final User user);
+    User edit(final User user) throws UserNotFoundException;
 
-    void delete(final User user);
+    void delete(final User user) throws UserNotFoundException;
 
-    User loadUserByUsername(String username);
+    User loadUserByUsername(String username) throws UserNotFoundException;
 
-    List<User> getAllUsers();
+    List<User> getAllUsers() throws UserNotFoundException;
+
+    User loadUserById(Long id) throws UserNotFoundException;
 }
