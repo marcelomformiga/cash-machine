@@ -16,20 +16,12 @@
         StorageHelper.setItem('logged', logged);
       };
 
-      this.setConnected = function (connected) {
-        $cookies.put('connected', connected);
-      };
-
       this.getUser = function () {
         return $cookies.getObject('user');
       };
 
       this.isLogged = function () {
         return StorageHelper.getItem('logged');
-      };
-
-      this.isConnected = function () {
-        return $cookies.get('connected');
       };
 
       this.authorize = function () {
@@ -45,3 +37,23 @@
       };
     }]);
 }());
+
+var StorageHelper = (function() {
+
+    var SH = {};
+
+    SH.setItem = function(chave, valor) {
+        window.localStorage.setItem(chave, angular.toJson(valor));
+    };
+
+    SH.getItem = function(chave) {
+        return angular.fromJson(window.localStorage.getItem(chave));
+    };
+
+    SH.removeItem = function(chave) {
+        window.localStorage.removeItem(chave);
+    };
+
+    return SH;
+
+})();
