@@ -13,6 +13,7 @@ public class AccountResponse implements Serializable {
 
     private List<Cash> cashList;
     private String message;
+    private Double value;
 
     public AccountResponse() {
     }
@@ -20,6 +21,11 @@ public class AccountResponse implements Serializable {
     public AccountResponse(List<Cash> cashList, String message) {
         this.cashList = cashList;
         this.message = message;
+    }
+
+    public AccountResponse(String message, Double value) {
+        this.message = message;
+        this.value = value;
     }
 
     public AccountResponse(String message) {

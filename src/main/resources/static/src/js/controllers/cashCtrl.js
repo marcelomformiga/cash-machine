@@ -36,7 +36,7 @@
                             closeOnConfirm: true
                         }, function (isConfirm) {
                             if (isConfirm) {
-                                cashService.process($scope.cash).then(function (res) {
+                                cashService.cashout($scope.cash).then(function (res) {
                                     var response = res.data;
                                     if(response.message === "Insufficient funds") {
                                         toastr.error('Saldo insuficiente!', {timeOut: 7000});

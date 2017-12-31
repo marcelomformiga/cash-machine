@@ -30,6 +30,11 @@
                     templateUrl: "views/pages/cash.html",
                     controller: "cashCtrl"
                 })
+                .state('home.balance', {
+                    url: "/balance",
+                    templateUrl: "views/pages/balance.html",
+                    controller: "balanceCtrl"
+                })
                 .state('home.profile', {
                     url: "/profile",
                     templateUrl: "views/pages/profile.html",

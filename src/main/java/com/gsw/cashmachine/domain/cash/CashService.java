@@ -1,6 +1,6 @@
 package com.gsw.cashmachine.domain.cash;
 
-import com.gsw.cashmachine.domain.cashout.CashOutException;
+import com.gsw.cashmachine.domain.cashmachine.CashMachineException;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface CashService {
 
-    List<Cash> processValue(final Double value) throws CashOutException;
+    List<Cash> processValue(final Double value) throws CashMachineException;
 }

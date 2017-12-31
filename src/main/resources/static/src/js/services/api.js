@@ -7,6 +7,32 @@
         var host = config.apiUrl();
         var baseUrl = host;
 
+        this.cashout = function (entry) {
+            return $http({
+                method: 'POST',
+                url: baseUrl + '/api/cashout',
+                data: entry,
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
+        this.loadBalance = function (entry) {
+            return $http({
+                method: 'GET',
+                url: baseUrl + '/api/balance',
+                params: {
+                    username: entry.username
+                },
+                headers: {
+                    'Content-type': 'application/json;charset=utf-8',
+                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
+                }
+            });
+        };
+
         this.loadProfile = function (entry) {
             return $http({
                 method: 'GET',
@@ -15,18 +41,6 @@
                     username: entry.username
                 },
                 headers: {
-                    'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
-                }
-            });
-        };
-
-        this.process = function (entry) {
-            return $http({
-                method: 'POST',
-                url: baseUrl + '/api/cash',
-                data: entry,
-                headers: {
-                    'Content-type': 'application/json;charset=utf-8',
                     'X-Auth-Token': StorageHelper.getItem(KEY_STORAGE)
                 }
             });

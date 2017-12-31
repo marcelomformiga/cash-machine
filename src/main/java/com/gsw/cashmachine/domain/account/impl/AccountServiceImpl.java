@@ -23,21 +23,21 @@ public class AccountServiceImpl implements AccountService {
     private TransactionService transactionService;
 
     @Override
-    public Account checkBalanceByUsername(final AccountRequest accountRequest) throws AccountException, UserNotFoundException {
-        Account account = findAccountByUsername(accountRequest.getUsername());
-        if (account.getBalance() < accountRequest.getValue()) {
-            throw new AccountException("Insufficient funds");
-        }
-        return account;
-    }
-
-    @Override
     @Transactional
     public void cashOut(final AccountRequest accountRequest) throws AccountException, UserNotFoundException {
         Account account = checkBalanceByUsername(accountRequest);
         account.cashOut(accountRequest.getValue());
         saveTransaction(accountRequest.getValue(), account, TransactionType.CASHOUT);
         accountRepository.save(account);
+    }
+
+    @Override
+    public Account checkBalanceByUsername(final AccountRequest accountRequest) throws AccountException, UserNotFoundException {
+        Account account = findAccountByUsername(accountRequest.getUsername());
+        if (account.getBalance() < accountRequest.getValue()) {
+            throw new AccountException("Insufficient funds");
+        }
+        return account;
     }
 
     @Override

@@ -16,7 +16,6 @@
 
                     StorageHelper.setItem("previous_page", "menu");
                     authUser.authorize();
-                    console.log(StorageHelper.getItem(KEY_SESSION));
                     if(StorageHelper.getItem(KEY_SESSION)) {
                         socketService.disconnect();
                     }

@@ -3,7 +3,7 @@ package com.gsw.cashmachine.domain.cash.impl;
 import com.gsw.cashmachine.domain.cash.Cash;
 import com.gsw.cashmachine.domain.cash.CashService;
 import com.gsw.cashmachine.domain.cash.Note;
-import com.gsw.cashmachine.domain.cashout.CashOutException;
+import com.gsw.cashmachine.domain.cashmachine.CashMachineException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 public class CashOutServiceImpl implements CashService {
 
     @Override
-    public List<Cash> processValue(final Double value) throws CashOutException {
+    public List<Cash> processValue(final Double value) throws CashMachineException {
         validateValue(value.intValue());
         List<Note> orderNotes = getDescOrderNotes();
         return calculateNotes(orderNotes, value.intValue());
@@ -54,8 +54,8 @@ public class CashOutServiceImpl implements CashService {
         return notes;
     }
 
-    private void validateValue(Integer value) throws CashOutException {
-        if (value % 10 != 0) throw new CashOutException("Invalid value");
+    private void validateValue(Integer value) throws CashMachineException {
+        if (value % 10 != 0) throw new CashMachineException("Invalid value");
     }
 
 }

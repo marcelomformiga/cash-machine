@@ -9,6 +9,7 @@
         .controller('loginCtrl', ['$scope', '$location', 'authUser', 'loginService', 'socketService', 'toastr',
                 function ($scope, $location, authUser, loginService, socketService, toastr) {
 
+                    var KEY_STORAGE = 'token';
                     $("body").addClass('cashmachine-color');
                     StorageHelper.setItem("previous_page", "login");
                     $scope.entry = {};
@@ -39,8 +40,12 @@
                     };
 
                     function isLogged() {
-                        if (authUser.isLogged() && authUser.isConnected()) {
+                        if (authUser.isLogged()) {
                             $location.path('/menu');
+                        } else {
+                            StorageHelper.removeItem(KEY_STORAGE);
+                            authUser.setLogged(false);
+                            authUser.removeCookies();
                         }
                     }
                     isLogged();

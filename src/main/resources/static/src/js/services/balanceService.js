@@ -6,10 +6,10 @@
 (function () {
   'use strict';
 
-  angular.module('app').service('cashService', ['api', function (api) {
+  angular.module('app').service('balanceService', ['api', function (api) {
 
-    this.cashout = function (entry) {
-        return api.cashout(entry)
+    this.loadBalance = function (entry) {
+        return api.loadBalance(entry)
             .then(function (res) {
                 return res;
             });
