@@ -1,10 +1,12 @@
-package com.gsw.cashmachine.domain.account;
+package com.gsw.cashmachine.domain.transaction;
 
+import com.gsw.cashmachine.domain.account.Account;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  * A classe Transaction representa o modelo de dados de uma transacao no banco.
@@ -29,7 +31,11 @@ public class Transaction implements Serializable {
     private Account account;
 
     @Column(name = "value", nullable = false)
-    private BigDecimal value;
+    private Double value;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date", nullable = false)
+    private Calendar date;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transaction_type", nullable = false)
@@ -38,9 +44,10 @@ public class Transaction implements Serializable {
     public Transaction() {
     }
 
-    public Transaction(Account account, BigDecimal value, TransactionType transaction_type) {
+    public Transaction(Account account, Double value, Calendar date, TransactionType transaction_type) {
         this.account = account;
         this.value = value;
+        this.date = date;
         this.transaction_type = transaction_type;
     }
 }

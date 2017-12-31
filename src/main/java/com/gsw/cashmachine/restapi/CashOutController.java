@@ -1,8 +1,9 @@
 package com.gsw.cashmachine.restapi;
 
-import com.gsw.cashmachine.authentication.request.CashMachineRequest;
-import com.gsw.cashmachine.domain.cashmachine.Cash;
-import com.gsw.cashmachine.domain.cashmachine.CashService;
+import com.gsw.cashmachine.authentication.request.AccountRequest;
+import com.gsw.cashmachine.authentication.response.AccountResponse;
+import com.gsw.cashmachine.domain.cash.Cash;
+import com.gsw.cashmachine.domain.cashout.CashOutService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,15 +23,15 @@ import java.util.List;
 @Log4j
 @RestController
 @RequestMapping("/api")
-public class CashController {
+public class CashOutController {
 
     @Autowired
-    private CashService cashService;
+    private CashOutService cashOutService;
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/cash", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Cash>> process(@RequestBody CashMachineRequest request) {
-        List<Cash> process = cashService.process(request);
-        return new ResponseEntity(process, HttpStatus.CREATED);
+    public ResponseEntity<List<Cash>> process(@RequestBody AccountRequest request) {
+        AccountResponse process = cashOutService.process(request);
+        return new ResponseEntity(process, HttpStatus.OK);
     }
 }

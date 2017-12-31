@@ -3,7 +3,7 @@ package com.gsw.cashmachine.authentication.service.impl;
 import com.gsw.cashmachine.authentication.request.AuthenticationSocketRequest;
 import com.gsw.cashmachine.authentication.response.AuthenticationSocketResponse;
 import com.gsw.cashmachine.authentication.service.UserSocketService;
-import com.gsw.cashmachine.domain.cashmachine.AuthenticationSocketException;
+import com.gsw.cashmachine.authentication.exception.AuthenticationSocketException;
 import com.gsw.cashmachine.utils.Constants;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

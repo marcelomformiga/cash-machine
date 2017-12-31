@@ -1,4 +1,4 @@
-package com.gsw.cashmachine.domain.cashmachine;
+package com.gsw.cashmachine.authentication.exception;
 
 /**
  * Created by eduardo on 29/12/17.

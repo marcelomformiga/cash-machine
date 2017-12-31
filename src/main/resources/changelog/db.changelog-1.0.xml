@@ -54,7 +54,10 @@
             <column name="account_id" type="BIGINT">
                 <constraints nullable="true"/>
             </column>
-            <column name="value" type="DECIMAL">
+            <column name="value" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="transaction_type" type="varchar(10)">

@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * A classe User representa o modelo de dados de usuarios no banco cashmachine.
+ * A classe User representa o modelo de dados de usuarios no banco cash.
  *
  * @author Eduardo Alves
  * @version 1.0

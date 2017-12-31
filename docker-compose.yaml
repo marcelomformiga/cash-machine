@@ -10,7 +10,7 @@ services:
       - mysql_db:/home/eduardo/databases/mysql/:rw
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cashmachine
+      MYSQL_DATABASE: cash
 volumes:
   mysql_db:
   

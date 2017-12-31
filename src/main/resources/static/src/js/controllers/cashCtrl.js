@@ -13,9 +13,12 @@
                     var KEY_SESSION = 'sessionId';
                     var KEY_STORAGE = 'token';
                     var KEY_LOGGED = 'logged';
+                    var user = authUser.getUser();
 
                     StorageHelper.setItem("previous_page", "cash");
-                    $scope.cash = {};
+                    $scope.cash = {
+                        username:user.username
+                    };
                     $scope.notes = [];
                     authUser.authorize();
 
@@ -34,14 +37,20 @@
                         }, function (isConfirm) {
                             if (isConfirm) {
                                 cashService.process($scope.cash).then(function (res) {
-                                    if (res.status === 200) {
-                                        $scope.notes = res.data;
-                                        toastr.success('Operação realizada com sucesso', {timeOut: 900});
+                                    var response = res.data;
+                                    if(response.message === "Insufficient funds") {
+                                        toastr.error('Saldo insuficiente!', {timeOut: 7000});
+                                    } else if(response.message === "Cannot find account by User") {
+                                        toastr.error('Conta de usuário não encontrada!', {timeOut: 7000});
+                                    } else if(response.message === "Invalid value") {
+                                        toastr.error('Valor inválido!', {timeOut: 7000});
                                     } else {
-                                        toastr.error('Ocorreu um problema na operação', {timeOut: 900});
+                                        toastr.success('Operação concluída', {timeOut: 7000});
                                     }
+                                    $scope.notes = response.cashList;
+
                                 }).catch(function () {
-                                    toastr.error('Ocorreu um problema na operação', {timeOut: 900});
+                                    toastr.error('Ocorreu um problema na operação', {timeOut: 2000});
                                 })
                             }
                         });

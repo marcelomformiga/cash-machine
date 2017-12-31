@@ -1,12 +1,12 @@
 package com.gsw.cashmachine.domain.account;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gsw.cashmachine.domain.transaction.Transaction;
 import com.gsw.cashmachine.domain.user.User;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -40,6 +40,7 @@ public class Account implements Serializable {
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "account", targetEntity = Transaction.class,
             fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Transaction> transactionList;
@@ -59,6 +60,18 @@ public class Account implements Serializable {
         this.balance = balance;
         this.user = user;
         this.transactionList = transactionList;
+    }
+
+    public void cashOut(Double value) {
+        this.balance -= value;
+    }
+
+    public void deposit(Double value) {
+        this.balance += value;
+    }
+
+    public void addTransaction(Transaction transaction) {
+        transactionList.add(transaction);
     }
 
     @Override
