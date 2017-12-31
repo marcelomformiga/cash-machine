@@ -60,11 +60,14 @@ public class UserServiceImpl implements UserService {
      * @param user
      */
     @Override
-    public User edit(final User user) throws ExistUserException {
+    public User edit(final User user) throws ExistUserException, UserNotFoundException {
+        User userById = loadUserById(user.getId());
         User userEntity = this.userRepository.findByUsername(user.getUsername());
-        if (userEntity != null) throw new ExistUserException();
+        if (userEntity.getId() != userById.getId()) {
+            throw new ExistUserException();
+        }
         if (user.getPassword().equals("") || user.getPassword() == null) {
-            userEntity.setPassword(userEntity.getPassword());
+            userById.setPassword(userById.getPassword());
             return userRepository.save(user);
         } else {
             return userRepository.save(new User(user.getId(), user.getUsername(), encoder.encode(user.getPassword()), user.getAuthorities(), user.getEmail(), user.getAccount()));

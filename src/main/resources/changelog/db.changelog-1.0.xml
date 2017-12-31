@@ -92,7 +92,7 @@
 
     <changeSet id="7" author="eduardo">
         <insert tableName="user" dbms="mysql">
-            <column name="username" value="admin"/>
+            <column name="username" value="eduardo"/>
             <column name="email" value="eduardodinizo@hotmail.com"/>
             <column name="password" value="$2a$10$PP3tuCfHLYIvnbjqQ2rGzuAaneK12ItksesFToTv5ahIE1c.liBHq"/>
             <column name="authorities" value="ROLE_USER"/>

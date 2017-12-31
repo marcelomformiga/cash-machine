@@ -9,7 +9,7 @@ public interface UserService {
 
     User save(final User user) throws ExistUserException;
 
-    User edit(final User user) throws  ExistUserException;
+    User edit(final User user) throws ExistUserException, UserNotFoundException;
 
     void delete(final User user) throws UserNotFoundException;
 

@@ -45,6 +45,8 @@ public class UserController {
             return new ResponseEntity(userEntity, HttpStatus.OK);
         } catch (ExistUserException e) {
             return new ResponseEntity(userEntity, HttpStatus.CONFLICT);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
