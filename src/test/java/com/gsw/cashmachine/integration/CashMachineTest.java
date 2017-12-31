@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class AccountTest extends AbstractApplicationTest {
+public class CashMachineTest extends AbstractApplicationTest {
 
     private String token = null;
 

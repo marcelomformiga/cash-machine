@@ -43,8 +43,8 @@ public class UserController {
         try {
             userEntity = service.edit(user);
             return new ResponseEntity(userEntity, HttpStatus.OK);
-        } catch (UserNotFoundException e) {
-            return new ResponseEntity(userEntity, HttpStatus.NOT_FOUND);
+        } catch (ExistUserException e) {
+            return new ResponseEntity(userEntity, HttpStatus.CONFLICT);
         }
     }
 
