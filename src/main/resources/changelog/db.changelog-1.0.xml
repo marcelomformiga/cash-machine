@@ -87,7 +87,7 @@
             <column name="username" value="admin"/>
             <column name="email" value="eduardodinizo@hotmail.com"/>
             <column name="password" value="$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi"/>
-            <column name="authorities" value="ROLE_ADMIN"/>
+            <column name="authorities" value="ROLE_USER"/>
         </insert>
     </changeSet>-->
 

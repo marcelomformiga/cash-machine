@@ -17,7 +17,7 @@
                     $scope.isEdit = 'salvar';
                     $scope.account = {};
                     $scope.user = {
-                        authorities: "ROLE_ADMIN",
+                        authorities: "ROLE_USER",
                         account: $scope.account
                     };
 

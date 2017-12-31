@@ -36,7 +36,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/user", method = RequestMethod.PUT)
     public ResponseEntity<User> edit(@RequestBody User user) {
         User userEntity = null;
@@ -48,7 +48,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/user", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@RequestBody User user) {
         try {
@@ -59,7 +59,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/user", method = RequestMethod.GET)
     public ResponseEntity<User> seachByUsername(@RequestParam("username") String username) {
         User userEntity = null;
@@ -71,7 +71,7 @@ public class UserController {
         }
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public ResponseEntity<User> getAll() {
         List<User> allUsers = null;

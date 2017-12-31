@@ -26,28 +26,28 @@ public class CashMachineController {
     @Autowired
     private CashMachineService cashMachineService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/cashout", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AccountResponse> cashout(@RequestBody AccountRequest request) {
         AccountResponse process = cashMachineService.cashout(request);
         return new ResponseEntity(process, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/deposit", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AccountResponse> deposit(@RequestBody AccountRequest request) {
         AccountResponse process = cashMachineService.deposit(request);
         return new ResponseEntity(process, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/balance", method = RequestMethod.GET)
     public ResponseEntity<AccountResponse> balance(@RequestParam("username") String username) {
         AccountResponse balance = cashMachineService.getBalance(username);
         return new ResponseEntity(balance, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(path = "/transaction", method = RequestMethod.GET)
     public ResponseEntity<AccountResponse> transaction(@RequestParam("username") String username) {
         AccountResponse transaction = cashMachineService.loadTrasactionsByUsername(username);

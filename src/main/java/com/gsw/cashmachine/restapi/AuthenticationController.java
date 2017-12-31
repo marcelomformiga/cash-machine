@@ -72,7 +72,7 @@ public class AuthenticationController {
     @RequestMapping(path = "/auth", method = RequestMethod.GET)
     public ResponseEntity<AuthenticationResponse> refreshToken(@RequestParam("username") String username) {
         String newToken = this.tokenUtils.generateTokenByUsername(username);
-        return new ResponseEntity(new AuthenticationResponse(newToken, username, "ROLE_ADMIN"), HttpStatus.OK);
+        return new ResponseEntity(new AuthenticationResponse(newToken, username, "ROLE_USER"), HttpStatus.OK);
     }
 
     @MessageMapping("/join")

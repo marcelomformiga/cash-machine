@@ -46,7 +46,7 @@ public class UserTest extends AbstractApplicationTest {
     public void crudTest() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
 
-        User user = new User("thiago", "1234", "thiago@hotmail.com", "ROLE_ADMIN", new Account());
+        User user = new User("thiago", "1234", "thiago@hotmail.com", "ROLE_USER", new Account());
         String jsonInString = mapper.writeValueAsString(user);
         int status = super.mockMvcPerformAuthenticatedPostStatus("/api/user", jsonInString, MediaType.APPLICATION_JSON_VALUE, status().isCreated(), token);
         Assert.assertEquals(201, status);
