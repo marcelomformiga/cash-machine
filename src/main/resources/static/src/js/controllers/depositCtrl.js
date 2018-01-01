@@ -32,17 +32,22 @@
                             closeOnConfirm: true
                         }, function (isConfirm) {
                             if (isConfirm) {
-                                depositService.deposit($scope.cash).then(function (res) {
-                                    var response = res.data;
+                                console.log($scope.cash.value);
+                                if($scope.cash.value > 0) {
+                                    depositService.deposit($scope.cash).then(function (res) {
+                                        var response = res.data;
 
-                                    if(response.message === "Cannot find account by User") {
-                                        toastr.error('Conta de usuário não encontrada!', {timeOut: 7000});
-                                    } else {
-                                        toastr.success('Operação concluída', {timeOut: 7000});
-                                    }
-                                }).catch(function () {
-                                    toastr.error('Ocorreu um problema na operação', {timeOut: 2000});
-                                })
+                                        if(response.message === "Cannot find account by User") {
+                                            toastr.error('Conta de usuário não encontrada!', {timeOut: 7000});
+                                        } else {
+                                            toastr.success('Operação concluída', {timeOut: 7000});
+                                        }
+                                    }).catch(function () {
+                                        toastr.error('Ocorreu um problema na operação', {timeOut: 2000});
+                                    })
+                                } else {
+                                    toastr.info('Digite um valor maior que 0', {timeOut: 3000});
+                                }
                             }
                         });
                     };

@@ -36,22 +36,26 @@
                             closeOnConfirm: true
                         }, function (isConfirm) {
                             if (isConfirm) {
-                                cashService.cashout($scope.cash).then(function (res) {
-                                    var response = res.data;
-                                    if(response.message === "Insufficient funds") {
-                                        toastr.error('Saldo insuficiente!', {timeOut: 7000});
-                                    } else if(response.message === "Cannot find account by User") {
-                                        toastr.error('Conta de usuário não encontrada!', {timeOut: 7000});
-                                    } else if(response.message === "Invalid value") {
-                                        toastr.error('Valor inválido!', {timeOut: 7000});
-                                    } else {
-                                        toastr.success('Operação concluída', {timeOut: 7000});
-                                    }
-                                    $scope.notes = response.cashList;
+                                if($scope.cash.value > 0) {
+                                    cashService.cashout($scope.cash).then(function (res) {
+                                        var response = res.data;
+                                        if(response.message === "Insufficient funds") {
+                                            toastr.error('Saldo insuficiente!', {timeOut: 7000});
+                                        } else if(response.message === "Cannot find account by User") {
+                                            toastr.error('Conta de usuário não encontrada!', {timeOut: 7000});
+                                        } else if(response.message === "Invalid value") {
+                                            toastr.error('Valor inválido!', {timeOut: 7000});
+                                        } else {
+                                            toastr.success('Operação concluída', {timeOut: 7000});
+                                        }
+                                        $scope.notes = response.cashList;
 
-                                }).catch(function () {
-                                    toastr.error('Ocorreu um problema na operação', {timeOut: 2000});
-                                })
+                                    }).catch(function () {
+                                        toastr.error('Ocorreu um problema na operação', {timeOut: 2000});
+                                    })
+                                } else {
+                                    toastr.info('Digite um valor maior que 0', {timeOut: 3000});
+                                }
                             }
                         });
                     };
