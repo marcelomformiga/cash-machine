@@ -8,7 +8,7 @@ import java.util.Collection;
 
 /**
  * A classe AuthenticationUser e responsavel por implementar os metodos de UserDetails para
- * gerar a autenticacao do spring securuty
+ * gerar a autenticacao do spring security
  * @author Eduardo Alves
  * @version 1.0
  */

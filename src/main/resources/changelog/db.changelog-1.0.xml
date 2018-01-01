@@ -15,23 +15,88 @@
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(60)">
                 <constraints nullable="true"/>
             </column>
             <column name="authorities" type="varchar(15)">
-                <constraints nullable="true"/>
+                <constraints nullable="false"/>
             </column>
-            <column name="observation" type="varchar(500)">
+            <column name="account_id" type="BIGINT">
                 <constraints nullable="true"/>
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="2" author="eduardo">
+        <createTable tableName="account">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="agency" type="varchar(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account" type="varchar(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="eduardo">
+        <createTable tableName="transaction">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="account_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="value" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_type" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="eduardo" >
+        <addForeignKeyConstraint baseColumnNames="account_id"
+                                 baseTableName="user"
+                                 constraintName="fk_account_user"
+                                 referencedColumnNames="id"
+                                 referencedTableName="account"/>
+    </changeSet>
+
+    <changeSet id="5" author="eduardo" >
+        <addForeignKeyConstraint baseColumnNames="account_id"
+                                 baseTableName="transaction"
+                                 constraintName="fk_transaction_account"
+                                 referencedColumnNames="id"
+                                 referencedTableName="account"/>
+    </changeSet>
+
+    <changeSet id="6" author="eduardo">
+        <insert tableName="account" dbms="mysql">
+            <column name="agency" value="4569"/>
+            <column name="account" value="123658"/>
+            <column name="balance" value="500"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="7" author="eduardo">
         <insert tableName="user" dbms="mysql">
-            <column name="username" value="admin"/>
-            <column name="password" value="$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi"/>
-            <column name="authorities" value="ROLE_ADMIN"/>
-            <column name="observation" value="ADMIN"/>
+            <column name="username" value="eduardo"/>
+            <column name="email" value="eduardodinizo@hotmail.com"/>
+            <column name="password" value="$2a$10$PP3tuCfHLYIvnbjqQ2rGzuAaneK12ItksesFToTv5ahIE1c.liBHq"/>
+            <column name="authorities" value="ROLE_USER"/>
+            <column name="account_id" value="1"/>
         </insert>
     </changeSet>
 

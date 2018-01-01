@@ -6,7 +6,7 @@ import com.gsw.cashmachine.authentication.response.AuthenticationResponse;
 import com.gsw.cashmachine.authentication.security.TokenUtils;
 import com.gsw.cashmachine.authentication.service.UserSocketService;
 import com.gsw.cashmachine.authentication.user.AuthenticationUser;
-import com.gsw.cashmachine.configurarion.StompConnectEvent;
+import com.gsw.cashmachine.interceptor.StompConnectEvent;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -52,16 +52,6 @@ public class AuthenticationController {
     @Autowired
     private StompConnectEvent stompConnectEvent;
 
-    /**
-     * O metodo recebe os dados de login e tenta receber suas credenciais
-     * utilizando o servico de autenticacao do spring. Caso o usuario seja valido e
-     * retornado uma instancia de AuthenticationResponse informando o username, tipo de autorizacao
-     * e o token valido para enviar requisicoes a API.
-     *
-     * @param authenticationRequest
-     * @return authenticationResponse
-     * @throws AuthenticationException
-     */
     @RequestMapping(path = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody AuthenticationRequest authenticationRequest) throws AuthenticationException {
 
@@ -79,23 +69,12 @@ public class AuthenticationController {
         }
     }
 
-    /**
-     * Metodo responsavel por atualizar o token do usuario
-     * @param username
-     * @return
-     */
     @RequestMapping(path = "/auth", method = RequestMethod.GET)
     public ResponseEntity<AuthenticationResponse> refreshToken(@RequestParam("username") String username) {
         String newToken = this.tokenUtils.generateTokenByUsername(username);
-        return new ResponseEntity(new AuthenticationResponse(newToken, username, "ROLE_ADMIN"), HttpStatus.OK);
+        return new ResponseEntity(new AuthenticationResponse(newToken, username, "ROLE_USER"), HttpStatus.OK);
     }
 
-    /**
-     * Metodo responsavel por adicionar o usuario a sessao e permitir que ele
-     * faca requisicoes ao servidor
-     * @param request
-     * @param headerAccessor
-     */
     @MessageMapping("/join")
     public void join(AuthenticationSocketRequest request, SimpMessageHeaderAccessor headerAccessor) {
         logger.info("Join " + headerAccessor.getSessionId());
@@ -104,31 +83,12 @@ public class AuthenticationController {
         socketService.connectUser(request);
     }
 
-    /**
-     * Metodo responsavel por desconectar o usuario do servidor
-     * @param request
-     */
     @MessageMapping("/leave")
     public void leave(AuthenticationSocketRequest request) {
         logger.info("Leave " + request.getSessionId());
         socketService.disconnectUser(request);
     }
 
-    /**
-     * Metodo responsavel por manter a comunicao entre o front-end da aplicacao
-     * para que o nginx nao durrube a sessao
-     * @param request
-     */
-    @MessageMapping("/heartbeat")
-    public void heartbeat(AuthenticationSocketRequest request) {
-        logger.info("Heartbeat " + request.getToken());
-        socketService.heartbeat(request);
-    }
-
-    /**
-     * Evento responsavel por capturar uma conexao ao servidor
-     * @param event
-     */
     @EventListener
     private void handleSessionConnected(SessionConnectEvent event) {
         SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.wrap(event.getMessage());
@@ -136,10 +96,6 @@ public class AuthenticationController {
         stompConnectEvent.onApplicationEvent(event);
     }
 
-    /**
-     * Evento responsavel por capturar quando um usuario desconecta do servidor
-     * @param event
-     */
     @EventListener
     private void handleSessionDisconnect(SessionDisconnectEvent event) {
         logger.info("Disconnected " + event.getSessionId());

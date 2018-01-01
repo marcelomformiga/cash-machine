@@ -29,7 +29,7 @@ public class AuthenticationTest extends AbstractApplicationTest {
     @Test
     public void testLogin() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        AuthenticationRequest authenticationRequest = new AuthenticationRequest("admin", "admin");
+        AuthenticationRequest authenticationRequest = new AuthenticationRequest("eduardo", "eduardo");
         String jsonInString = mapper.writeValueAsString(authenticationRequest);
         String token = super.mockMvcPerformResult("/api/auth", jsonInString, MediaType.APPLICATION_JSON_VALUE);
         AuthenticationResponse authenticationResponse = mapper.readValue(token, AuthenticationResponse.class);
@@ -39,7 +39,7 @@ public class AuthenticationTest extends AbstractApplicationTest {
     @Test
     public void testBadCredentialsLogin() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        AuthenticationRequest authenticationRequest = new AuthenticationRequest("admin", "wrong password");
+        AuthenticationRequest authenticationRequest = new AuthenticationRequest("eduardo", "wrong password");
         String jsonInString = mapper.writeValueAsString(authenticationRequest);
         int status = super.mockMvcLoginPost("/api/auth", jsonInString, MediaType.APPLICATION_JSON_VALUE, status().isUnauthorized());
         Assert.assertEquals(401, status);

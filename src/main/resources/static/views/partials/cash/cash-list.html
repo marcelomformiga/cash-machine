@@ -1,0 +1,32 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card z-depth-4">
+                    <div class="card-header" >
+                        <h5 class="title">Valor Sacado</h5>
+                        <p class="category">Valor Total: {{cash.value}}</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <th>Nota</th>
+                                <th>Quantidade</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="note in notes">
+                                <td>{{note.value}}</td>
+                                <td>{{note.amount}}</td>
+                                <td>{{note.value * note.amount}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

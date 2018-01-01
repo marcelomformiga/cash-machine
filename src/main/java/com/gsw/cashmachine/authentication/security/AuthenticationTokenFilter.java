@@ -33,21 +33,6 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
     @Autowired
     private UserDetailsService userDetailsService;
 
-    /**
-     * O metodo doFilter e acionado quando alguma requisicao ocorre na API.
-     * A API utiliza spring security e todas as requisicoes precisam de autorizacao
-     * disponibilizada pela autenticacao do usuario. O metodo verifica se o usuario
-     * informou o token no header da requisicao e se as informacoes contidas nele correspondem
-     * a um usuario no banco de dados. Se as informacoes estiverem corretas o usuario e autenticado
-     * no contexto do spring para prosseguir no processo, caso contrario e retornado o status de nao
-     * autorizado.
-     *
-     * @param request
-     * @param response
-     * @param chain
-     * @throws IOException
-     * @throws ServletException
-     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 

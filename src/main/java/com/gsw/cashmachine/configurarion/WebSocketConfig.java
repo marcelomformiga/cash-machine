@@ -1,14 +1,14 @@
 package com.gsw.cashmachine.configurarion;
 
+import com.gsw.cashmachine.interceptor.IpHandshakeInterceptor;
 import com.gsw.cashmachine.utils.Constants;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.*;
 
 /**
  * A classe WebSocketConfig  defini as configuracoes de conexao do spring websocket
+ *
  * @author Eduardo Alves
  * @version 1.0
  */
@@ -35,20 +35,4 @@ class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
                 .setMessageSizeLimit(16 * 1024);
     }
 
-    @Bean
-    public PresenceChannelInterceptor presenceChannelInterceptor() {
-        return new PresenceChannelInterceptor();
-    }
-
-    @Override
-    public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.taskExecutor().corePoolSize(8);
-        registration.setInterceptors(presenceChannelInterceptor());
-    }
-
-    @Override
-    public void configureClientOutboundChannel(ChannelRegistration registration) {
-        registration.taskExecutor().corePoolSize(8);
-        registration.setInterceptors(presenceChannelInterceptor());
-    }
 }

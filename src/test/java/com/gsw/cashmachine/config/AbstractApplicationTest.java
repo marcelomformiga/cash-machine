@@ -87,15 +87,17 @@ public abstract class AbstractApplicationTest {
                 .contentType(mediaType)).andExpect(status).andReturn().getResponse().getStatus();
     }
 
-    protected String mockMvcPerformGetRequestParam(final String request, final String key, final String param) throws Exception {
+    protected String mockMvcPerformAuthenticatedGetRequestParam(final String request, final String key, final String param, final String authentication) throws Exception {
         return mockMvc.perform(get(request)
                 .param(key, param)
+                .header(tokenHeader, authentication)
                 .accept(MediaType.parseMediaType(JSON_UTF8_MEDIA_TYPE))
         ).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 
-    protected String mockMvcPerformGetAll(final String request) throws Exception {
+    protected String mockMvcPerformAuthenticatedGetAll(final String request, final String authentication) throws Exception {
         return mockMvc.perform(get(request)
+                .header(tokenHeader, authentication)
         ).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
     }
 }

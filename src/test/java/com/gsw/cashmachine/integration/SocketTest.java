@@ -37,7 +37,7 @@ public class SocketTest {
 
     private SockJsClient sockJsClient;
 
-    private String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE1MDQ2Mzg5ODIxMDZ9.ciO3sUWyq9Fld2eDCb3DjRch6y-zr7-K1OUAbYrEQ3p3Avr87wLcU5bveBYLoFeL6XEqs2S92ISazWbIJYwV5A";
+    private String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZHVhcmRvIiwiY3JlYXRlZCI6MTUxNDc1NDI1MTgwMH0.BBcRX6rEdoGKzjQF7SLG_CjkaQ2JzopVDm2QQdkAB0gQ6j6-lTIoV1maDTNm-a0P_8GIayEBCzTp3gFBo5VquQ";
 
     private WebSocketStompClient stompClient;
 
@@ -84,7 +84,7 @@ public class SocketTest {
                     }
                 });
                 try {
-                    session.send("/topic/join", new AuthenticationSocketRequest(token, "admin"));
+                    session.send("/topic/join", new AuthenticationSocketRequest(token, "eduardo"));
                 } catch (Throwable t) {
                     failure.set(t);
                     latch.countDown();
@@ -92,7 +92,7 @@ public class SocketTest {
             }
         };
 
-        this.stompClient.connect("ws://localhost:{port}/chat", this.headers, handler, this.port);
+        this.stompClient.connect("ws://localhost:{port}/cashmachine", this.headers, handler, this.port);
 
         if (latch.await(1, TimeUnit.SECONDS)) {
             if (failure.get() != null) {
