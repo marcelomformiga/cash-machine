@@ -7,7 +7,7 @@ Contribuidores do projeto:
 
 ## Problema
 
-Desenver uma aplicação que simule a entrega de notas quando um cliente efetuar um saque em um caixa eletrônico. Os requisitos básicos são os seguintes:
+Desenvolver uma aplicação que simule a entrega de notas quando um cliente efetuar um saque em um caixa eletrônico. Os requisitos básicos são os seguintes:
 
 - Entregar o menor número de notas;
 
