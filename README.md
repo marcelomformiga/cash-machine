@@ -51,7 +51,7 @@ O projeto foi desenvolvido com a tecnologia Java utilizando os frameworks Spring
  <b>unidade</b> dos serviços e endpoints utilizando o Spring Test, JUnit e MockMvc.   
    
 
-##Tecnologias:
+## Tecnologias:
 
 ### Back-end
 - Java 8
@@ -116,4 +116,10 @@ liquibase.user=root
 liquibase.password=root
 spring.datasource.username=root
 spring.datasource.password=root
+```
+
+Para baixar as dependencias de front-end executar o comando:
+```shell
+cd [DIRETORIO DO PROJETO]
+bower install
 ```
