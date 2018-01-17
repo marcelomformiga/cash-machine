@@ -7,7 +7,7 @@ services:
       - "3306:3306"
     restart: always
     volumes:
-      - mysql_db:/home/eduardo/databases/mysql/:rw
+      - mysql_db:/var/lib/mysql/:rw
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: cashmachine
