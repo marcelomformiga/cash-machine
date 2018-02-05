@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         User userEntity = this.userRepository.findByUsername(user.getUsername());
         if (userEntity != null) compareUsers(userById, userEntity);
         if (user.getPassword().equals("") || user.getPassword() == null) {
-            userById.setPassword(userById.getPassword());
+            user.setPassword(userById.getPassword());
             return userRepository.save(user);
         } else {
             return userRepository.save(new User(user.getId(), user.getUsername(), encoder.encode(user.getPassword()), user.getAuthorities(), user.getEmail(), user.getAccount()));
